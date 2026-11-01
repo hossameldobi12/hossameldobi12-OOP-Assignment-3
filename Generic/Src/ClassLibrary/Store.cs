@@ -4,25 +4,28 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    public class Store<T>  where  T : IHasId
+    public  class Store<T>  where  T : IHasId
     {
-        private List<T> items = new List<T>();
-        public void Add(T item)
+        private Dictionary<int, T> items = new Dictionary<int, T>();
+        public  void Add(T item)
         {
-            items.Add(item);
+           if(items.TryAdd(item.Id, item) == false)
+            {
+                throw new Exception($"Item with id {item.Id} already exists");
+            }
         }
-        public void Remove(T item)
+        public  void Remove(T item)
         {
-            items.Remove(item);
+            items.Remove(item.Id);
         }
-        public T? GetById(int id)
+        public  T? GetById(int id)
         {
          
-            return items.FirstOrDefault( x=> x.Id == id);
+            return items.GetValueOrDefault(id);
         }
-        public List<T> GetAll()
+        public  List<T> GetAll()
         {
-            return items;
+            return new List<T>(items.Values);
         }
     }
 }
