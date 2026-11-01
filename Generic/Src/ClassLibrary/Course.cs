@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    public class Course
+    public class Course :IHasId
     {
-        public int Id { get; set; }
+        public int Id { get; set; } 
         public string Title { get; set; }
         public decimal Price { get; set; }
     }

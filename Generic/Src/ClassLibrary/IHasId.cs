@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    internal interface IHasId
+    public interface IHasId
     {
+        public int Id { get; set; }
     }
 }
