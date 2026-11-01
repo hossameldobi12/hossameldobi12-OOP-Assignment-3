@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ClassLibrary
 {
-    public class Store<T>
+    public class Store<T>  where  T : IHasId
     {
         private List<T> items = new List<T>();
         public void Add(T item)
@@ -18,7 +18,7 @@ namespace ClassLibrary
         public T? GetById(int id)
         {
          
-            return items.FirstOrDefault( x=> x.id == id);
+            return items.FirstOrDefault( x=> x.Id == id);
         }
         public List<T> GetAll()
         {
